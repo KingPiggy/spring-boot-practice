@@ -1,0 +1,47 @@
+# profile active
+spring:
+  profiles:
+    active: local
+#    include: db-h2
+    include: db-mysql
+---
+
+# local profile
+spring:
+  profiles: local
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql : true
+  thymeleaf:
+    cache: false
+  devtools:
+    livereload:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 4000MB
+      max-request-size: 4000MB
+  config:
+    use-legacy-processing: true
+
+---
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+web:
+  address: "http://localhost:8080"
+
+---
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
