@@ -17,3 +17,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+bootJar { enabled = false } // core 은 bootJar 로 패키징 할 필요 없음
+jar { enabled = true }
