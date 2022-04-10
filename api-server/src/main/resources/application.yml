@@ -32,6 +32,7 @@ server:
   error:
     whitelabel:
       enabled: false
+  port: 8080
 
 web:
   address: "http://localhost:8080"
