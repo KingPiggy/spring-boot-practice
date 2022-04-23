@@ -2,8 +2,8 @@
 spring:
   profiles:
     active: local
-#    include: db-h2
-    include: db-mysql
+    include: db-h2
+#    include: db-mysql
 ---
 
 # local profile
