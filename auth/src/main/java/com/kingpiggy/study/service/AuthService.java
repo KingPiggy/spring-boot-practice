@@ -1,2 +1,4 @@
-package com.kingpiggy.study.service;public class AuthService {
+package com.kingpiggy.study.service;
+
+public class AuthService {
 }

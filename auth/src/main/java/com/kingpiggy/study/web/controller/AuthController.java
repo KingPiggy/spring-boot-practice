@@ -1,2 +1,4 @@
-package com.kingpiggy.study.web.controller;public class AuthController {
+package com.kingpiggy.study.web.controller;
+
+public class AuthController {
 }

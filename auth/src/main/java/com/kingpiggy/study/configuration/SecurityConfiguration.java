@@ -1,2 +1,4 @@
-package com.kingpiggy.study.configuration;public class SecurityConfiguration {
+package com.kingpiggy.study.configuration;
+
+public class SecurityConfiguration {
 }
