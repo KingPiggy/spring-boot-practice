@@ -1,7 +1,7 @@
 package com.kingpiggy.study.service;
 
-import com.kingpiggy.study.domain.entity.Movie;
-import com.kingpiggy.study.domain.repository.MovieRepository;
+import com.kingpiggy.study.domain.movie.Movie;
+import com.kingpiggy.study.domain.movie.MovieRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

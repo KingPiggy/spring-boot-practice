@@ -46,3 +46,10 @@ logging:
         type:
           descriptor:
             sql: trace
+
+---
+
+jwt:
+  token:
+    secretKey: "1234$%^^890HelloWorld!%$#@!9876543210^_^"
+    issuer: "KingPiggy"

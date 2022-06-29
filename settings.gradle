@@ -8,4 +8,3 @@ pluginManagement {
 rootProject.name = 'spring-boot-practice'
 include 'api-server'
 include 'core'
-

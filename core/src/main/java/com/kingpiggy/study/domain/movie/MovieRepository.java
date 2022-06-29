@@ -1,6 +1,6 @@
-package com.kingpiggy.study.domain.repository;
+package com.kingpiggy.study.domain.movie;
 
-import com.kingpiggy.study.domain.entity.Movie;
+import com.kingpiggy.study.domain.movie.Movie;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

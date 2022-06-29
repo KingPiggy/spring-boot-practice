@@ -1,4 +1,4 @@
-package com.kingpiggy.study.web.controller.api;
+package com.kingpiggy.study.web.controller;
 
 import com.kingpiggy.study.service.ReportService;
 import java.io.ByteArrayInputStream;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-public class ReportApiController {
+public class ReportController {
 
     private final ReportService reportService;
 
