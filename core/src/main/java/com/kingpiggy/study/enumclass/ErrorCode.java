@@ -33,7 +33,9 @@ public enum ErrorCode {
 
     /* Auth */
     EMAIL_NOT_FOUND("A001", "Email not found"),
-    PASSWORD_NOT_EQUAL("A002", "Password is not correct");
+    PASSWORD_NOT_EQUAL("A002", "Password is not correct"),
+    NO_ROLES("A003", "No roles in user"),
+    DUPLICATED_EMAIL("A004", "Requested email is duplicated");
 
     /* Define other errors here */
 
