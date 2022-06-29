@@ -3,10 +3,15 @@
 ## Proposal
 Study, 2022.03.22 ~ ?
 
-## Server
+## Modules
 1. api-server
    - API Server
    - port : 8080
-2. auth
-   - Auth Server
-   - port : 8081
+2. core
+   - Entity, Repository
+   - Common stuff
+
+## To Do
+1. accessToken, refresh 관련
+   - accessToken 만료 여부 확인
+   - refreshToken을 이용한 accessToken 갱신

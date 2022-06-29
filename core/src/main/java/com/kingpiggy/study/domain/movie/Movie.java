@@ -1,4 +1,4 @@
-package com.kingpiggy.study.domain.entity;
+package com.kingpiggy.study.domain.movie;
 
 import java.time.LocalDate;
 import javax.persistence.Entity;
