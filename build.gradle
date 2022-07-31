@@ -35,23 +35,25 @@ subprojects {
 
 	dependencies {
 		implementation 'org.springframework.boot:spring-boot-starter'
-		// implementation 'org.springframework.boot:spring-boot-starter-aop'
 		implementation 'org.springframework.boot:spring-boot-starter-batch'
 		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-		// implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 		implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 		implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 		implementation 'org.springframework.boot:spring-boot-starter-security'
-
 		implementation 'org.springframework.boot:spring-boot-starter-validation'
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 
+		// MySql
 		implementation 'mysql:mysql-connector-java'
 
+		// H2 DB
 		runtimeOnly 'com.h2database:h2'
 
+		// Lombok
 		compileOnly 'org.projectlombok:lombok'
 		annotationProcessor 'org.projectlombok:lombok'
+
+		// Test
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	}
 
@@ -65,4 +67,27 @@ subprojects {
 		}
 	}
 
+}
+
+project(':core') {
+	bootJar { enabled = false } // core 은 bootJar 로 패키징 할 필요 없음
+	jar { enabled = true }
+
+	dependencies {
+	}
+}
+
+project(':api-server') {
+	dependencies {
+		implementation project(":core")
+
+		// Excel
+		implementation('org.apache.poi:poi-ooxml:3.16') // .xlsx
+		implementation('org.apache.poi:poi:3.16') // .xls
+
+		// JWT
+		implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+		implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+		implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+	}
 }
