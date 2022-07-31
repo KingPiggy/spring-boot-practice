@@ -11,6 +11,13 @@ Study, 2022.03.22 ~ ?
    - Entity, Repository
    - Common stuff
 
+## Git Flow
+1. master
+2. release : PROD, CBT
+3. develop : DEV
+4. feature : create from master
+
+
 ## To Do
 1. accessToken, refresh 관련
    - accessToken 만료 여부 확인
