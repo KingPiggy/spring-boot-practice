@@ -14,6 +14,9 @@ public interface ApiApplicationConstants {
     String PAYLOAD_USER_ID = "userId";
     String ACCESS_TOKEN_COOKIE_NAME = "accessToken";
 
+    /* Sample Movie */
+    int SAMPLE_MOVIE_SIZE = 10;
+
     List<String> FILTER_EXCLUDED_URI_LIST = Collections.singletonList("/api/auth/sign-up");
 
 }
