@@ -1,6 +1,7 @@
 package com.kingpiggy.study.service;
 
 import com.kingpiggy.study.domain.movie.Movie;
+import com.kingpiggy.study.domain.movie.MovieMapper;
 import com.kingpiggy.study.domain.movie.MovieRepository;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.kingpiggy.study.web.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,13 @@ import static com.kingpiggy.study.ApiApplicationConstants.SAMPLE_MOVIE_SIZE;
 public class MovieService {
 
     private final MovieRepository movieRepository;
+
+    private final MovieMapper movieMapper;
+
+    @Transactional(readOnly = true)
+    public ApiResponse countMovie() {
+        return ApiResponse.OK(movieMapper.countMovie());
+    }
 
     @Transactional
     public void createSampleMovies() {
