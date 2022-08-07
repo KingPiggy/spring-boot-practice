@@ -43,6 +43,15 @@ subprojects {
 		implementation 'org.springframework.boot:spring-boot-starter-validation'
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 
+		//QueryDSL
+		implementation "com.querydsl:querydsl-core"
+		implementation "com.querydsl:querydsl-jpa"
+		implementation "com.querydsl:querydsl-apt"
+		annotationProcessor(
+				"com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa",
+				"javax.persistence:javax.persistence-api",
+				"javax.annotation:javax.annotation-api")
+
 		// Mybatis
 		implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
 
@@ -70,14 +79,17 @@ subprojects {
 		}
 	}
 
+	// QueryDSL
+	def querydslSrcDir = 'src/main/generated'
+	sourceSets { main.java.srcDirs += [ querydslSrcDir ] }
+	tasks.withType(JavaCompile) { options.annotationProcessorGeneratedSourcesDirectory = file(querydslSrcDir) }
+	clean.doLast { file(querydslSrcDir).deleteDir() }
+
 }
 
 project(':core') {
 	bootJar { enabled = false } // core 은 bootJar 로 패키징 할 필요 없음
 	jar { enabled = true }
-
-	dependencies {
-	}
 }
 
 project(':api-server') {
