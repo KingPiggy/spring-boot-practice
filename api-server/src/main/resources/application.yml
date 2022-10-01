@@ -2,18 +2,13 @@
 spring:
   profiles:
     active: local
-    include: db-h2
+    include: core
 
 ---
 
 # local profile
 spring:
   profiles: local
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql : true
   thymeleaf:
     cache: false
   devtools:
@@ -26,8 +21,6 @@ spring:
   config:
     use-legacy-processing: true
 
----
-
 server:
   error:
     whitelabel:
@@ -37,8 +30,6 @@ server:
 web:
   address: "http://localhost:8080"
 
----
-
 logging:
   level:
     org:
@@ -46,8 +37,6 @@ logging:
         type:
           descriptor:
             sql: trace
-
----
 
 jwt:
   token:

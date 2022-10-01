@@ -1,0 +1,6 @@
+FROM mysql:5.7
+
+MAINTAINER kingpiggy <lsoonnoon@gmail.com>
+
+ENV MYSQL_ROOT_PASSWORD=tmdgns2
+ENV MYSQL_DATABASE=kingpiggy
