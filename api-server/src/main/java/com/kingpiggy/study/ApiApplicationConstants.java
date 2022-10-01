@@ -15,7 +15,7 @@ public interface ApiApplicationConstants {
     String ACCESS_TOKEN_COOKIE_NAME = "accessToken";
 
     /* Sample Movie */
-    int SAMPLE_MOVIE_SIZE = 10;
+    int SAMPLE_MOVIE_SIZE = 35;
 
     List<String> FILTER_EXCLUDED_URI_LIST = Collections.singletonList("/api/auth/sign-up");
 

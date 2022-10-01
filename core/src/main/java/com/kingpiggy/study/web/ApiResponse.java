@@ -25,10 +25,6 @@ public class ApiResponse<T> {
 
     private T data;
 
-    // pagination
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Pagination pagination;
-
     // OK
     public static <T> ApiResponse<T> OK(){
         return (ApiResponse<T>)ApiResponse.builder()
@@ -46,16 +42,6 @@ public class ApiResponse<T> {
                 .code("OK")
                 .message("OK")
                 .data(data)
-                .build();
-    }
-
-    public static <T> ApiResponse<T> OK(T data, Pagination pagination){
-        return (ApiResponse<T>)ApiResponse.builder()
-                .transactionTime(LocalDateTime.now())
-                .code("OK")
-                .message("OK")
-                .data(data)
-                .pagination(pagination)
                 .build();
     }
 
