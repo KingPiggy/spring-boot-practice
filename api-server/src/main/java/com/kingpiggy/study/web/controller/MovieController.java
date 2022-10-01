@@ -32,7 +32,7 @@ public class MovieController {
 
     @GetMapping("api/movies/count")
     public ApiResponse countMovie() {
-        return movieService.countMovie();
+        return ApiResponse.OK(movieService.countMovie());
     }
 
     @GetMapping("api/movies")

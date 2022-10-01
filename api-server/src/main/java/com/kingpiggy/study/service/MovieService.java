@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.kingpiggy.study.web.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -29,8 +28,8 @@ public class MovieService {
     private final MovieMapper movieMapper;
 
     @Transactional(readOnly = true)
-    public ApiResponse countMovie() {
-        return ApiResponse.OK(movieMapper.countMovie());
+    public int countMovie() {
+        return movieMapper.countMovie();
     }
 
     @Transactional
@@ -58,6 +57,7 @@ public class MovieService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public Page<Movie> getMoviesPaging(Pageable pageable) {
         return movieRepository.findAll(pageable);
     }
