@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  mysql:
+  mysql-kingpiggy:
     image: mysql:5.7
     restart: always
     container_name: local_mysql
@@ -16,3 +16,18 @@ services:
       - --collation-server=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
+
+  mysql-digimon_pg:
+    image: mysql:5.7
+    restart: unless-stopped
+    container_name: local_digimon_pg_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: tmdgns2
+      MYSQL_DATABASE: digimon_pg
+    volumes:
+      - C:/mysql_digimon_pg/data:/var/lib/mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3307:3306"

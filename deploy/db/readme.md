@@ -19,7 +19,5 @@ $ docker ps -a
 컨테이너 생성 및 실행
 $ docker-compose -f docker_compose_local_mysql.yml up -d
 
-## 두 가지 방법 비교
-- DockerFile은 도커 이미지를 생성하기 위한 틀을 만들어 놓은 것
-- DockerFile은 확장자가 없다
-- 
+컨테이너 실행
+$ docker start local_mysql
