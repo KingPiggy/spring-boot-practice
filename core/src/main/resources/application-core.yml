@@ -11,7 +11,7 @@ spring:
   jpa:
     hibernate:
       direct: org.hibernate.dialect.MySQL5InnoDBDialect
-      ddl-auto: update
+      ddl-auto: none
   config:
     use-legacy-processing: true
   datasource:

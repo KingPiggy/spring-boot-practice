@@ -3,7 +3,7 @@ package com.kingpiggy.study.util;
 import com.kingpiggy.study.enumclass.ErrorCode;
 import com.kingpiggy.study.service.CustomUserDetailsService;
 import com.kingpiggy.study.web.BusinessException;
-import com.kingpiggy.study.web.dto.TokenResponse;
+import com.kingpiggy.study.web.dto.response.TokenResponse;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 

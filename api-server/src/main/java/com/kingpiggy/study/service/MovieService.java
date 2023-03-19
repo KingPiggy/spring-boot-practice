@@ -1,5 +1,6 @@
 package com.kingpiggy.study.service;
 
+import com.kingpiggy.study.aop.timer.Timer;
 import com.kingpiggy.study.domain.movie.Movie;
 import com.kingpiggy.study.domain.movie.MovieMapper;
 import com.kingpiggy.study.domain.movie.MovieRepository;
@@ -32,6 +33,7 @@ public class MovieService {
         return movieMapper.countMovie();
     }
 
+    @Timer
     @Transactional
     public void createSampleMovies() {
         Optional<Movie> movie = movieRepository.findTopByOrderByIdDesc();

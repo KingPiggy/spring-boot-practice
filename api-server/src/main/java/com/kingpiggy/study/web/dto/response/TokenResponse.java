@@ -1,4 +1,4 @@
-package com.kingpiggy.study.web.dto;
+package com.kingpiggy.study.web.dto.response;
 
 import lombok.*;
 
