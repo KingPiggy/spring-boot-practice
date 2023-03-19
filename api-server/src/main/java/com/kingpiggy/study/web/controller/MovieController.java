@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,17 +26,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RequiredArgsConstructor
+@RequestMapping("/movies")
 @RestController
 public class MovieController {
 
     private final MovieService movieService;
 
-    @GetMapping("api/movies/count")
+    @GetMapping("/count")
     public ApiResponse countMovie() {
         return ApiResponse.OK(movieService.countMovie());
     }
 
-    @GetMapping("api/movies")
+    @GetMapping("/paging")
     public ApiResponse getMoviesPaging(@RequestParam(defaultValue = "0") Integer pageNo,
                                        @RequestParam(defaultValue = "10") Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNo, pageSize);

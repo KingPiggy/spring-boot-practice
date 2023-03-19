@@ -9,6 +9,7 @@ import com.kingpiggy.study.web.dto.UserSignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ import java.util.HashMap;
  * @version 0.0.1, 2022-06-05
  *
  */
+@RequestMapping("/auth")
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
@@ -30,7 +32,7 @@ public class AuthController {
     private final AuthService authService;
     private final JwtTokenProvider jwtTokenProvider;
 
-    @PostMapping("/api/auth/login")
+    @PostMapping("/login")
     public ApiResponse login(@RequestBody @Valid UserLoginRequest request, HttpServletResponse httpServletResponse) {
 
         ApiResponse result = authService.login(request);
@@ -41,18 +43,18 @@ public class AuthController {
         return result;
     }
 
-    @PostMapping("/api/auth/sign-up")
+    @PostMapping("/sign-up")
     public ApiResponse signUp(@RequestBody @Valid UserSignUpRequest request) {
         return authService.signUp(request);
     }
 
-    @PostMapping("/api/auth/check-email")
+    @PostMapping("/check-email")
     public ApiResponse checkEmail(@RequestBody HashMap<String, Object> requestMap) {
         String email = requestMap.get("email").toString();
         return authService.checkDuplicatedEmail(email);
     }
 
-    @PostMapping("/api/auth/grant/admin-role")
+    @PostMapping("/grant/admin-role")
     public ApiResponse giveAdminRole() {
         return authService.grantAdminRole(1L);
     }

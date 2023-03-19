@@ -9,34 +9,40 @@ spring:
 # local profile
 spring:
   profiles: local
-  thymeleaf:
-    cache: false
-  devtools:
-    livereload:
-      enabled: true
   servlet:
     multipart:
       max-file-size: 4000MB
       max-request-size: 4000MB
   config:
     use-legacy-processing: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 server:
   error:
     whitelabel:
       enabled: false
   port: 8080
+  servlet:
+    context-path: /api
 
 web:
   address: "http://localhost:8080"
 
 logging:
   level:
+    root: INFO
     org:
       hibernate:
+        SQL: OFF
         type:
           descriptor:
             sql: trace
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
 
 jwt:
   token:

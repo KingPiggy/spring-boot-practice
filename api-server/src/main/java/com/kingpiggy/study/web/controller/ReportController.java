@@ -11,17 +11,19 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping("/report")
 @RestController
 public class ReportController {
 
     private final ReportService reportService;
 
-    @GetMapping("/api/movies/report")
+    @GetMapping
     public ResponseEntity<InputStreamResource> getMoviesToExcel(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startedAt,
         @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endedAt) {
         try {

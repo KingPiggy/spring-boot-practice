@@ -48,7 +48,7 @@ public class MovieService {
         movieRepository.saveAll(sampleMovies);
     }
 
-    public Movie createMovieEntity(int i) {
+    private Movie createMovieEntity(int i) {
         return Movie.builder()
                 .title("Sample Movie_" + i)
                 .adult(false)
