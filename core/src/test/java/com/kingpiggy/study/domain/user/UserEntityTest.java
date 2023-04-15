@@ -8,12 +8,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-class UserTest {
+class UserEntityTest {
 
     @PersistenceContext
     EntityManager em;
@@ -22,20 +20,20 @@ class UserTest {
     @DisplayName("[성공] QueryDSL 적용 테스트")
     void test_QUserClass() throws Exception {
         // given
-        User user = User.builder()
+        UserEntity userEntity = UserEntity.builder()
                 .email("kingpiggy@naver.com")
                 .password("1234")
                 .password("1234")
                 .name("kingpiggy")
                 .build();
-        User user2 = User.builder()
+        UserEntity userEntity2 = UserEntity.builder()
                 .email("damian@naver.com")
                 .password("1234")
                 .password("1234")
                 .name("damian")
                 .build();
-        em.persist(user);
-        em.persist(user2);
+        em.persist(userEntity);
+        em.persist(userEntity2);
 
         // when
         QUser qUser = QUser.user;
@@ -43,11 +41,11 @@ class UserTest {
 
         // then
         JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
-        User result = jpaQueryFactory.selectFrom(qUser)
+        UserEntity result = jpaQueryFactory.selectFrom(qUser)
                 .where(qUser.name.eq("kingpiggy"))
                 .fetchOne();
 
-        User result2 = jpaQueryFactory.selectFrom(qUser2)
+        UserEntity result2 = jpaQueryFactory.selectFrom(qUser2)
                 .where(qUser2.name.eq("damian"))
                 .fetchOne();
 

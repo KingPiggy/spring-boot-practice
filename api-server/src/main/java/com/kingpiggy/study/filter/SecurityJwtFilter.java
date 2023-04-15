@@ -2,7 +2,6 @@ package com.kingpiggy.study.filter;
 
 import com.kingpiggy.study.domain.user.CustomUserDetails;
 import com.kingpiggy.study.util.JwtTokenProvider;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.kingpiggy.study.ApiApplicationConstants.FILTER_EXCLUDED_URI_LIST;
-import static com.kingpiggy.study.ApiApplicationConstants.PAYLOAD_USER_ID;
+import static com.kingpiggy.study.ApiConstants.FILTER_EXCLUDED_URI_LIST;
+import static com.kingpiggy.study.ApiConstants.PAYLOAD_USER_ID;
 
 @RequiredArgsConstructor
 @Component

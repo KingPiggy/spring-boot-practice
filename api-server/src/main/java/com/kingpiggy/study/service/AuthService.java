@@ -1,6 +1,6 @@
 package com.kingpiggy.study.service;
 
-import com.kingpiggy.study.domain.user.User;
+import com.kingpiggy.study.domain.user.UserEntity;
 import com.kingpiggy.study.domain.user.UserRepository;
 import com.kingpiggy.study.enumclass.ErrorCode;
 import com.kingpiggy.study.util.JwtTokenProvider;
@@ -34,41 +34,41 @@ public class AuthService {
 
     @Transactional(rollbackFor = Exception.class)
     public ApiResponse login(UserLoginRequest request) {
-        User user = userRepository.findByEmail(request.getEmail())
+        UserEntity userEntity = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new BusinessException(ErrorCode.EMAIL_NOT_FOUND));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), userEntity.getPassword())) {
             throw new BusinessException(ErrorCode.PASSWORD_NOT_EQUAL);
         }
 
-        TokenResponse tokenResponse = jwtTokenProvider.createTokenDto(user.getId(), user.getRoles());
+        TokenResponse tokenResponse = jwtTokenProvider.createTokenDto(userEntity.getId(), userEntity.getRoles());
 
-        user.setRefreshToken(tokenResponse.getRefreshToken());
+        userEntity.setRefreshToken(tokenResponse.getRefreshToken());
 
         return ApiResponse.OK(tokenResponse);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public ApiResponse signUp(UserSignUpRequest request) {
-        Optional<User> user = userRepository.findByEmail(request.getEmail());
+        Optional<UserEntity> user = userRepository.findByEmail(request.getEmail());
 
         if (user.isPresent()) {
             throw new BusinessException(ErrorCode.DUPLICATED_EMAIL);
         }
 
-        User savedUser = userRepository.save(User.builder()
+        UserEntity savedUserEntity = userRepository.save(UserEntity.builder()
                 .email(request.getEmail())
                 .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build());
 
-        return ApiResponse.OK("Saved user ID : " + savedUser.getId());
+        return ApiResponse.OK("Saved user ID : " + savedUserEntity.getId());
     }
 
     @Transactional(readOnly = true)
     public ApiResponse checkDuplicatedEmail(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
+        Optional<UserEntity> user = userRepository.findByEmail(email);
 
         if (user.isPresent()) {
             throw new BusinessException(ErrorCode.DUPLICATED_EMAIL);
@@ -79,12 +79,12 @@ public class AuthService {
 
     @Transactional
     public ApiResponse grantAdminRole(Long userId) {
-        User user = userRepository.findById(userId)
+        UserEntity userEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.EMAIL_NOT_FOUND));
 
-        user.getRoles().add("ROLE_ADMIN");
+        userEntity.getRoles().add("ROLE_ADMIN");
 
-        return ApiResponse.OK(user.getRoles());
+        return ApiResponse.OK(userEntity.getRoles());
     }
 
 }

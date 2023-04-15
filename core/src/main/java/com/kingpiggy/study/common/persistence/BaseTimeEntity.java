@@ -1,4 +1,4 @@
-package com.kingpiggy.study.domain.entity;
+package com.kingpiggy.study.common.persistence;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

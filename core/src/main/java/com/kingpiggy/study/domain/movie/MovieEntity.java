@@ -3,7 +3,7 @@ package com.kingpiggy.study.domain.movie;
 import java.time.LocalDate;
 import javax.persistence.*;
 
-import com.kingpiggy.study.domain.entity.BaseTimeEntity;
+import com.kingpiggy.study.common.persistence.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

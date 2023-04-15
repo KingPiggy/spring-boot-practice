@@ -1,6 +1,7 @@
 package com.kingpiggy.study.web.controller.test;
 
 import com.kingpiggy.study.service.test.BulkCalculateService;
+import com.kingpiggy.study.web.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,18 +31,21 @@ public class BulkCalculateController {
     private final BulkCalculateService bulkCalculateService;
 
     @PostMapping("/insert/simple-id")
-    public void bulkInsertForSimpleId() {
+    public ApiResponse bulkInsertForSimpleId() {
         bulkCalculateService.bulkInsertForSimpleId();
+        return ApiResponse.OK("Done");
     }
 
     @PostMapping("/insert/simple-id/v2")
-    public void bulkInsertForSimpleId2() {
+    public ApiResponse bulkInsertForSimpleId2() {
         bulkCalculateService.bulkInsertForSimpleId2();
+        return ApiResponse.OK("Done");
     }
 
     @PostMapping("/insert/auto-increment")
-    public void bulkInsertForAutoIncrement() {
+    public ApiResponse bulkInsertForAutoIncrement() {
         bulkCalculateService.bulkInsertForAutoIncrement();
+        return ApiResponse.OK("Done");
     }
 
 }

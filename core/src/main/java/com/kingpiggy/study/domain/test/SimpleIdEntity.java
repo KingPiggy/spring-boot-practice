@@ -1,18 +1,16 @@
 package com.kingpiggy.study.domain.test;
 
-import com.kingpiggy.study.domain.entity.BaseTimeEntity;
+import com.kingpiggy.study.common.persistence.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 /**
  * SimpleIdEntity class.

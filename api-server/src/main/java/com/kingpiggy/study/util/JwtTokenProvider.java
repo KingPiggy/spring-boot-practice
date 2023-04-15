@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Key;
 
-import static com.kingpiggy.study.ApiApplicationConstants.*;
+import static com.kingpiggy.study.ApiConstants.*;
 
 
 @RequiredArgsConstructor

@@ -5,6 +5,12 @@ spring:
     hibernate:
       direct: org.hibernate.dialect.MySQL5InnoDBDialect
       ddl-auto: create
+    database: mysql
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        highlight_sql: true
   config:
     use-legacy-processing: true
   datasource:
@@ -12,3 +18,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/kingpiggy?serverTimezone=UTC&characterEncoding=UTF-8&rewriteBatchedStatements=true
     username: root
     password: tmdgns2
+
+# logging
+logging:
+  level:
+    org.hibernate: DEBUG
+    # org.hibernate.type.descriptor.sql: trace # Binding 값
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG

@@ -11,9 +11,6 @@ spring:
     database: mysql
     properties:
       hibernate:
-        format_sql: true
-        show_sql: true
-        highlight_sql: true
         jdbc.batch_size: 100
         order_inserts: true
         order_updates: true
@@ -28,13 +25,6 @@ server:
 
 web:
   address: "http://localhost:8080"
-
-logging:
-  level:
-    org.hibernate: DEBUG
-    # org.hibernate.type.descriptor.sql: trace # Binding 값
-    org.springframework.orm.jpa: DEBUG
-    org.springframework.transaction: DEBUG
 
 jwt:
   token:
