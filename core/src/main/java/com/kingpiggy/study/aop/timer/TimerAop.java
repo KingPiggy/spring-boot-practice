@@ -44,7 +44,7 @@ public class TimerAop {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String methodName = signature.getMethod().getName();
 
-        log.info("실행 메서드: {}, 실행시간 = {}s", methodName, totalTimeMillis/1000.0);
+        log.info("실행 메소드: {}, 실행시간 = {}s", methodName, totalTimeMillis/1000.0);
     }
 
 }

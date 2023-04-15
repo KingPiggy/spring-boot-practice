@@ -1,6 +1,7 @@
 package com.kingpiggy.study;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @version : 0.1.0
  */
 @Transactional
+@ActiveProfiles({"core", "test"})
 @SpringBootTest
 public class BaseLocalTest {
 }

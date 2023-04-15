@@ -1,21 +1,14 @@
-# profile active
-spring:
-  profiles:
-    active: core
-
----
-
 # core
 spring:
   profiles: core
   jpa:
     hibernate:
       direct: org.hibernate.dialect.MySQL5InnoDBDialect
-      ddl-auto: none
+      ddl-auto: create
   config:
     use-legacy-processing: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/kingpiggy?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/kingpiggy?serverTimezone=UTC&characterEncoding=UTF-8&rewriteBatchedStatements=true
     username: root
     password: tmdgns2

@@ -1,7 +1,7 @@
 package com.kingpiggy.study.service;
 
 import com.kingpiggy.study.aop.timer.Timer;
-import com.kingpiggy.study.domain.movie.Movie;
+import com.kingpiggy.study.domain.movie.MovieEntity;
 import com.kingpiggy.study.domain.movie.MovieMapper;
 import com.kingpiggy.study.domain.movie.MovieRepository;
 
@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.kingpiggy.study.web.dto.response.MovieResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -36,32 +38,45 @@ public class MovieService {
     @Timer
     @Transactional
     public void createSampleMovies() {
-        Optional<Movie> movie = movieRepository.findTopByOrderByIdDesc();
+        Optional<MovieEntity> movie = movieRepository.findTopByOrderByIdDesc();
         if (movie.isPresent()) {
             return;
         }
 
-        List<Movie> sampleMovies = new ArrayList<>();
+        List<MovieEntity> sampleMovieEntities = new ArrayList<>();
 
         for (int i = 0; i < SAMPLE_MOVIE_SIZE; i++) {
-            sampleMovies.add(createMovieEntity(i + 1));
+            sampleMovieEntities.add(createMovieEntity(i + 1));
         }
 
-        movieRepository.saveAll(sampleMovies);
+        movieRepository.saveAll(sampleMovieEntities);
     }
 
-    private Movie createMovieEntity(int i) {
-        return Movie.builder()
+    private MovieEntity createMovieEntity(int i) {
+        return MovieEntity.builder()
                 .title("Sample Movie_" + i)
-                .adult(false)
+                .adult(i % 2 == 0)
                 .overview("Overview_" + i)
                 .releaseDate(LocalDate.now())
                 .build();
     }
 
     @Transactional(readOnly = true)
-    public Page<Movie> getMoviesPaging(Pageable pageable) {
+    public Page<MovieEntity> getMoviesPaging(Pageable pageable) {
         return movieRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public List<MovieResponse> findAllMovieEntityByAdult(boolean isAdultMovie) {
+        return movieRepository.findAllByAdult(isAdultMovie)
+                .stream()
+                .map(m -> MovieResponse.builder()
+                        .title(m.getTitle())
+                        .overview(m.getOverview())
+                        .adult(m.getAdult())
+                        .releaseDate(m.getReleaseDate())
+                        .build())
+                .collect(Collectors.toList());
     }
 
 }

@@ -1,10 +1,7 @@
 package com.kingpiggy.study.domain.movie;
 
 import java.time.LocalDate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import com.kingpiggy.study.domain.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
@@ -16,8 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "movie")
 @Entity
-public class Movie extends BaseTimeEntity {
+public class MovieEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

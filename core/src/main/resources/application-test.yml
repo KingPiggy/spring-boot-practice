@@ -1,0 +1,20 @@
+# test
+spring:
+  profiles: test
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+logging:
+  level:
+    root: INFO
+    org:
+      hibernate:
+        SQL: OFF
+        type:
+          descriptor:
+            sql: trace
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG

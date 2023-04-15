@@ -1,6 +1,6 @@
 package com.kingpiggy.study.service;
 
-import com.kingpiggy.study.domain.movie.Movie;
+import com.kingpiggy.study.domain.movie.MovieEntity;
 import com.kingpiggy.study.domain.movie.MovieRepository;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -31,7 +31,7 @@ public class ReportService {
     @Transactional(readOnly = true)
     public ByteArrayInputStream getMoviesToExcel(LocalDate startedAt, LocalDate endedAt) throws IOException {
         // 1. Get Movie Data
-        List<Movie> movies = movieRepository.findAllByPeriod(startedAt, endedAt);
+        List<MovieEntity> movieEntities = movieRepository.findAllByPeriod(startedAt, endedAt);
 
         // 2. Create File
         Workbook workbook = new XSSFWorkbook();
@@ -52,15 +52,15 @@ public class ReportService {
         //moviesSheet.autoSizeColumn();
 
         // 5. Write Dashboard Sheet
-        createDashboardSheet(movies, moviesSheet, headerCellStyle);
+        createDashboardSheet(movieEntities, moviesSheet, headerCellStyle);
 
         // 6. Write File
         workbook.write(out);
-        log.info("[ReportService:getMoviesToExcel] create movie report done. row count:[{}]", movies.size());
+        log.info("[ReportService:getMoviesToExcel] create movie report done. row count:[{}]", movieEntities.size());
         return new ByteArrayInputStream(out.toByteArray());
     }
 
-    public void createDashboardSheet(List<Movie> movies, Sheet moviesSheet, CellStyle headerCellStyle) {
+    public void createDashboardSheet(List<MovieEntity> movieEntities, Sheet moviesSheet, CellStyle headerCellStyle) {
         // 1. Create header row
         Row headerRow = moviesSheet.createRow(0);
         String[] headerStrings = {"Title", "Adult", "Overview", "Release Date"};
@@ -77,7 +77,7 @@ public class ReportService {
         Row bodyRow = null;
         Cell bodyCell = null;
         int index = 1;
-        for(Movie data : movies) {
+        for(MovieEntity data : movieEntities) {
             bodyRow = moviesSheet.createRow(index++);
             bodyCell = bodyRow.createCell(0);
             bodyCell.setCellValue(data.getTitle());
