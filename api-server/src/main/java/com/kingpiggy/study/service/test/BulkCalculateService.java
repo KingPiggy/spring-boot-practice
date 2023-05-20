@@ -2,6 +2,7 @@ package com.kingpiggy.study.service.test;
 
 import com.kingpiggy.study.aop.timer.Timer;
 import com.kingpiggy.study.common.Constants;
+import com.kingpiggy.study.web.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,20 +31,34 @@ public class BulkCalculateService {
 
     @Timer
     @Transactional(rollbackFor = Exception.class)
-    public void bulkInsertForSimpleId() {
+    public ApiResponse bulkInsertForSimpleId() {
         simpleDataService.bulkInsertForIdEntity(Constants.TEST_CASE_COUNT_2000);
+
+        return ApiResponse.OK("Done");
     }
 
     @Timer
     @Transactional(rollbackFor = Exception.class)
-    public void bulkInsertForSimpleId2() {
+    public ApiResponse bulkInsertForSimpleId2() {
         simpleDataService.bulkInsertForIdEntity2(Constants.TEST_CASE_COUNT_2000, 100);
+
+        return ApiResponse.OK("Done");
     }
 
     @Timer
     @Transactional(rollbackFor = Exception.class)
-    public void bulkInsertForAutoIncrement() {
+    public ApiResponse bulkInsertForAutoIncrement() {
         simpleDataService.bulkInsertForAutoIncIdEntity(Constants.TEST_CASE_COUNT_2000);
+
+        return ApiResponse.OK("Done");
+    }
+
+    @Timer
+    @Transactional(rollbackFor = Exception.class)
+    public ApiResponse bulkUpdateForSimpleId() {
+        simpleDataService.bulkUpdateForSimpleId(Constants.TEST_CASE_COUNT_2000);
+
+        return ApiResponse.OK("Done");
     }
 
 }

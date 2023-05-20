@@ -2,19 +2,34 @@
 spring:
   profiles: test
   jpa:
+    hibernate:
+      direct: org.hibernate.dialect.MySQL5InnoDBDialect
+      ddl-auto: none
+    database: mysql
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 5000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
     properties:
       hibernate:
         format_sql: true
-        show_sql: true
+        show_sql: false
+        highlight_sql: true
+  config:
+    use-legacy-processing: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/kingpiggy?serverTimezone=UTC&characterEncoding=UTF-8&rewriteBatchedStatements=true
+    username: root
+    password: tmdgns2
 
+# logging
 logging:
   level:
-    root: INFO
-    org:
-      hibernate:
-        SQL: OFF
-        type:
-          descriptor:
-            sql: trace
+    org.hibernate: DEBUG
     org.springframework.orm.jpa: DEBUG
     org.springframework.transaction: DEBUG

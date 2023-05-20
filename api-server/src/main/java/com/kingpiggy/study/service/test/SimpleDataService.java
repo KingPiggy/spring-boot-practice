@@ -103,6 +103,23 @@ public class SimpleDataService {
         autoIncIdRepository.saveAll(testData);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void bulkUpdateForSimpleId(int totalCount) {
+        log.info("[bulkUpdateForSimpleId] bulk update. total count is {}.", totalCount);
+
+        List<SimpleIdEntity> testData = simpleIdRepository.findAllByOrderById();
+        // List<SimpleIdEntity> testData2 = createIdEntityList(totalCount);
+
+        int i = 0;
+        for (SimpleIdEntity entity : testData) {
+            String newTitle = i%2==0 ? "Even" : "Odd";
+            entity.setTitle(newTitle);
+            i++;
+        }
+
+        simpleIdRepository.saveAll(testData);
+    }
+
     public List<SimpleIdEntity> createIdEntityList(int totalCount) {
         List<SimpleIdEntity> testData = new ArrayList<>();
         for (int i = 0; i < totalCount; i++) {

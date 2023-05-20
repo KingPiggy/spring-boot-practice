@@ -6,10 +6,18 @@ spring:
       direct: org.hibernate.dialect.MySQL5InnoDBDialect
       ddl-auto: create
     database: mysql
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 5000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
     properties:
       hibernate:
         format_sql: true
-        show_sql: true
+        show_sql: false
         highlight_sql: true
   config:
     use-legacy-processing: true

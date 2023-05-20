@@ -48,4 +48,10 @@ public class BulkCalculateController {
         return ApiResponse.OK("Done");
     }
 
+    @PostMapping("/update/simple-id")
+    public ApiResponse bulkUpdateForSimpleId() {
+        bulkCalculateService.bulkUpdateForSimpleId();
+        return ApiResponse.OK("Done");
+    }
+
 }

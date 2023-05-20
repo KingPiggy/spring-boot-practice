@@ -1,0 +1,35 @@
+# local profile
+spring:
+  profiles: local
+  servlet:
+    multipart:
+      max-file-size: 4000MB
+      max-request-size: 4000MB
+  config:
+    use-legacy-processing: true
+  jpa:
+    database: mysql
+    properties:
+      hibernate:
+        jdbc.batch_size: 100
+        order_inserts: true
+        order_updates: true
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8080
+  servlet:
+    context-path: /api
+
+web:
+  address: "http://localhost:8080"
+
+jwt:
+  token:
+    secretKey: "1234$%^^890HelloWorld!%$#@!9876543210^_^"
+    issuer: "KingPiggy"
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
